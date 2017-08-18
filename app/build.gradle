@@ -29,11 +29,11 @@ android {
     buildToolsVersion "26.0.0"
 
     defaultConfig {
-        applicationId "substratum.theme.template"
+        applicationId "substratum.hidex.svandasek"
         minSdkVersion 24
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.8+"
         buildConfigField "String", "IV_KEY", "\"" + IV_KEY + "\""
         buildConfigField "byte[]", "DECRYPTION_KEY", String.valueOf("\"" + KEY + "\"").replace("\"", "").replace("[", "{").replace("]", "}")
         buildConfigField "byte[]", "IV_KEY", String.valueOf("\"" + IV_KEY + "\"").replace("\"", "").replace("[", "{").replace("]", "}")
@@ -52,6 +52,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/assets/overlaysj'] } }
 }
 
 dependencies {
@@ -134,7 +135,7 @@ gradle.buildFinished {
         def encryptedAssets = new File(getProjectDir(), "src/main/assets")
         encryptedAssets.deleteDir()
 
-        tempAssets.eachFileRecurse (FileType.FILES) { file ->
+        tempAssets.eachFileRecurse(FileType.FILES) { file ->
             FileInputStream fis = new FileInputStream(file)
             File fo = new File(file.getAbsolutePath().replace("assets-temp", "assets"))
             fo.getParentFile().mkdirs()
