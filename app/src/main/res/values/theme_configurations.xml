@@ -19,7 +19,8 @@
 
     <!-- Put your theme changelog here -->
     <string-array name="ThemeChangelog">
-        <item>3.0 - Ability to hide the Roaming indicator</item>
+        <item>4 - Added Substratum Lite support</item>
         <item>3.6 - Easier to select overlay, new icon and header</item>
+        <item>3.0 - Ability to hide the Roaming indicator</item>
     </string-array>
 </resources>

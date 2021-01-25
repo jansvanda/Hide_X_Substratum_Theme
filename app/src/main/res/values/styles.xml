@@ -1,0 +1,19 @@
+<resources>
+    <attr format="reference" name="cardStyle"/>
+    <style name="MyTheme" parent="Theme.AppCompat.DayNight">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="cardStyle">@style/CardView.Light</item>
+
+    </style>
+
+    <style name="DialogStyle.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="DialogStyle.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="DialogStyle.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>

@@ -7,15 +7,11 @@ import javax.crypto.spec.SecretKeySpec
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply from: 'ThemerConstants.gradle'
+apply plugin: 'kotlin-android-extensions'
 
 ext {
-    // Whether the theme assets should be encrypted or not
-    SHOULD_ENCRYPT_ASSETS = false
-
-    // Whether this theme supports third party theme systems
-    SUPPORTS_THIRD_PARTY_SYSTEMS = false
-
-    // SUBSTRATUM INTERNAL VALUES: DO NOT TOUCH
+    // Themers: DO NOT MODIFY
     byte[] key = new byte[16]
     new Random().nextBytes(key)
     KEY = key
@@ -25,53 +21,80 @@ ext {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 29
+
 
     defaultConfig {
+        // If you're planning to change up the package name, ensure you have read the readme
+        // thoroughly!
         applicationId "substratum.hidex.svandasek"
+
+        // We are only supporting Nougat and above, all new changes will incorporate Nougat changes
+        // to the substratum repo rather than anything lower. Keep targetSdkVersion the same.
         minSdkVersion 24
-        targetSdkVersion 26
-        versionCode 3
-        versionName "3.8+"
+        targetSdkVersion 29
+        // Both versions must be changed to increment on Play Store/user's devices
+        versionCode 11
+        versionName "11.0"
+
+        // Themers: DO NOT MODIFY
+        buildConfigField "boolean", "SUPPORTS_THIRD_PARTY_SYSTEMS", "" + SUPPORTS_THIRD_PARTY_SYSTEMS
+        buildConfigField "boolean", "ENABLE_APP_BLACKLIST_CHECK", "" + ENABLE_APP_BLACKLIST_CHECK
+        buildConfigField "boolean", "ALLOW_THIRD_PARTY_SUBSTRATUM_BUILDS", "" + ALLOW_THIRD_PARTY_SUBSTRATUM_BUILDS
         buildConfigField "String", "IV_KEY", "\"" + IV_KEY + "\""
         buildConfigField "byte[]", "DECRYPTION_KEY", String.valueOf("\"" + KEY + "\"").replace("\"", "").replace("[", "{").replace("]", "}")
         buildConfigField "byte[]", "IV_KEY", String.valueOf("\"" + IV_KEY + "\"").replace("\"", "").replace("[", "{").replace("]", "}")
         resValue "string", "encryption_status", (shouldEncrypt() ? "onCompileVerify" : "false")
-
-        buildConfigField "boolean", "SUPPORTS_THIRD_PARTY_THEME_SYSTEMS", "" + SUPPORTS_THIRD_PARTY_SYSTEMS
-        resValue "bool", "SUPPORTS_THIRD_PARTY_THEME_SYSTEMS", "" + SUPPORTS_THIRD_PARTY_SYSTEMS
     }
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // Themers: DO NOT MODIFY
+            buildConfigField "boolean", "ENFORCE_GOOGLE_PLAY_INSTALL", "false"
+            buildConfigField "String", "BASE_64_LICENSE_KEY", "\"\""
+            buildConfigField "String", "APK_SIGNATURE_PRODUCTION", "\"\""
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // Themers: DO NOT MODIFY
+            buildConfigField "boolean", "ENFORCE_GOOGLE_PLAY_INSTALL", "" + ENFORCE_GOOGLE_PLAY_INSTALL
+            buildConfigField "String", "BASE_64_LICENSE_KEY", "\"" + BASE_64_LICENSE_KEY + "\""
+            buildConfigField "String", "APK_SIGNATURE_PRODUCTION", "\"" + APK_SIGNATURE_PRODUCTION + "\""
         }
     }
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/assets/overlaysj'] } }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.github.javiersantos:PiracyChecker:1.1'
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version") {
-        transitive = true
-    }
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.github.javiersantos:PiracyChecker:1.2.5'
+    implementation 'com.google.android.play:core-ktx:1.8.1'
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.github.ibrahimsn98:android-particles:2.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.gms:play-services-ads:19.7.0'
+    implementation 'com.scottyab:rootbeer-lib:0.0.8'
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }
 
+// Themers: DO NOT MODIFY ANYTHING BELOW
 task encryptAssets {
     if (!shouldEncrypt()) {
-        println("skipping assets encryption...")
+        println("Skipping assets encryption...")
         return
     }
 
     def tempAssets = new File(getProjectDir(), "/src/main/assets-temp")
     if (!tempAssets.exists()) {
-        println("encrypting assets...")
+        println("Encrypting duplicated assets, don't worry, your original assets are safe...")
         def list = []
         def dir = new File(getProjectDir(), "/src/main/assets")
         dir.eachFileRecurse(FileType.FILES) { file ->
@@ -120,7 +143,7 @@ task encryptAssets {
             }
         }
     } else {
-        throw new RuntimeException("Old temporary assets found! Try to do a clean project")
+        throw new RuntimeException("Old temporary assets found! Try and do a clean project.")
     }
 }
 
@@ -131,7 +154,7 @@ project.afterEvaluate {
 gradle.buildFinished {
     def tempAssets = new File(getProjectDir(), "/src/main/assets-temp")
     if (tempAssets.exists()) {
-        println("cleaning encrypted assets...")
+        println("Cleaning duplicated encrypted assets, not your decrypted assets...")
         def encryptedAssets = new File(getProjectDir(), "src/main/assets")
         encryptedAssets.deleteDir()
 
@@ -155,8 +178,4 @@ gradle.buildFinished {
 boolean shouldEncrypt() {
     ArrayList<String> tasks = project.gradle.startParameter.taskNames
     return SHOULD_ENCRYPT_ASSETS && Arrays.toString(tasks).toLowerCase().contains("release")
-}
-
-repositories {
-    mavenCentral()
 }

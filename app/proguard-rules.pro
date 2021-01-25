@@ -20,3 +20,7 @@
 -keep class com.google.**
 -dontwarn com.google.**
 -keep public class com.android.vending.licensing.ILicensingService
+# For communication with AdColony's WebView
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}

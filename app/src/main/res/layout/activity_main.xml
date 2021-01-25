@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="false"
+    tools:context=".ui.MainActivity">
+
+    <me.ibrahimsn.particle.ParticleView
+        android:id="@+id/particleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:particleColor="#fff"
+        app:particleCount="30"
+        app:particleMaxRadius="12"
+        app:particleMinRadius="5"
+        app:particlesBackgroundColor="#3B4252" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:background="@color/colorPrimary"
+            ads:layout_constraintBottom_toTopOf="@+id/guideline1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="210dp"/>
+
+
+        <TextView
+            android:id="@+id/greeting_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center_vertical"
+            android:text="Welcome!"
+            android:textColor="#ffffff"
+            android:textSize="38sp"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ads:layout_constraintBottom_toBottomOf="parent"
+            ads:layout_constraintTop_toBottomOf="@id/greeting_txt">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="210dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/leftcontainer"
+                    style="@style/CardView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:orientation="vertical"
+                    ads:cardCornerRadius="12dp"
+                    ads:cardElevation="10dp"
+                    ads:layout_constraintBottom_toBottomOf="@id/guideline11"
+                    ads:layout_constraintStart_toStartOf="parent"
+                    ads:layout_constraintTop_toTopOf="@+id/guideline11"
+                    ads:layout_constraintWidth_percent="0.45">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/root_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="14dp"
+                            android:src="@drawable/ic_magisk"
+                            ads:tint="@color/colorPrimary" />
+
+                        <LinearLayout
+                            android:id="@+id/root_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/root_icon"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="18dp"
+                            android:paddingVertical="15dp">
+
+                            <TextView
+                                android:id="@+id/root_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:text="Root status"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/root_desc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Root detected"
+                                android:textColor="@color/green" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/rightcontainer"
+                    style="@style/CardView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:clickable="true"
+                    ads:cardCornerRadius="12dp"
+                    ads:cardElevation="10dp"
+                    ads:layout_constraintBottom_toBottomOf="@id/guideline11"
+                    ads:layout_constraintEnd_toEndOf="parent"
+                    ads:layout_constraintTop_toTopOf="@+id/guideline11"
+                    ads:layout_constraintWidth_percent="0.45">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/subs_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginVertical="14dp"
+                            android:src="@drawable/substratum"
+                            ads:tint="@color/colorPrimary" />
+
+                        <LinearLayout
+                            android:id="@+id/subs_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/subs_icon"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="18dp"
+                            android:paddingVertical="15dp">
+
+                            <TextView
+                                android:id="@+id/subs_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:text="Substratum status"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/subs_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Engine not detected"
+                                android:textColor="@android:color/holo_red_dark" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/subs"
+                    style="@style/CardView.Light"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:clickable="true"
+                    ads:cardCornerRadius="12dp"
+                    ads:cardElevation="10dp"
+                    ads:layout_constraintEnd_toEndOf="parent"
+                    ads:layout_constraintStart_toStartOf="parent"
+                    ads:layout_constraintTop_toBottomOf="@id/rightcontainer">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp">
+
+                        <ImageView
+                            android:id="@+id/subs_icon1"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="20dp"
+                            android:src="@drawable/ic_customer_support"
+                            ads:tint="@color/colorPrimary" />
+
+                        <LinearLayout
+                            android:id="@+id/subs_txt1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@id/subs_icon1"
+                            android:orientation="vertical"
+                            android:paddingVertical="15dp">
+
+                            <TextView
+                                android:id="@+id/substratum_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:text="Install overlay"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/sub_desc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="You need to build this overlay. Click to open Substratum and select Hide X."
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/contact"
+                    style="?attr/cardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    ads:cardCornerRadius="12dp"
+                    ads:cardElevation="10dp"
+                    ads:layout_constraintEnd_toEndOf="parent"
+                    ads:layout_constraintStart_toStartOf="parent"
+                    ads:layout_constraintTop_toBottomOf="@id/subs">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <LinearLayout
+                            android:id="@+id/contact_txt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingVertical="10dp"
+                            android:paddingStart="15dp"
+                            ads:layout_constraintBottom_toBottomOf="parent"
+                            ads:layout_constraintLeft_toLeftOf="parent"
+                            ads:layout_constraintRight_toLeftOf="@id/contact_icons"
+                            ads:layout_constraintTop_toTopOf="parent"
+                            ads:layout_constraintWidth_percent="0.8">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:text="Contact me"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Does something not work as expected? Before writing a public review, let me know!"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/contact_icons"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            ads:layout_constraintBottom_toBottomOf="parent"
+                            ads:layout_constraintLeft_toRightOf="@id/contact_txt"
+                            ads:layout_constraintRight_toRightOf="parent"
+                            ads:layout_constraintTop_toTopOf="parent"
+                            ads:layout_constraintWidth_percent="0.2">
+
+                            <ImageView
+                                android:id="@+id/tgprivate"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="12dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_tg"
+                                ads:tint="@color/black" />
+
+                            <ImageView
+                                android:id="@+id/mail"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center_horizontal"
+                                android:src="@drawable/ic_baseline_alternate_email_24"
+                                ads:tint="@color/black" />
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/rate"
+                    style="?attr/cardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:clickable="true"
+                    ads:cardCornerRadius="12dp"
+                    ads:cardElevation="10dp"
+                    ads:layout_constraintEnd_toEndOf="parent"
+                    ads:layout_constraintStart_toStartOf="parent"
+                    ads:layout_constraintTop_toBottomOf="@id/contact">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/rate_txt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingVertical="10dp"
+                            android:paddingStart="15dp"
+                            ads:layout_constraintBottom_toBottomOf="parent"
+                            ads:layout_constraintLeft_toLeftOf="parent"
+                            ads:layout_constraintRight_toRightOf="parent"
+                            ads:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center"
+                                android:paddingBottom="6dp"
+                                android:text="Rate this App"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/animationView"
+                                android:layout_width="250dp"
+                                android:layout_height="80dp"
+                                android:layout_gravity="center_horizontal"
+                                ads:lottie_autoPlay="true"
+                                ads:lottie_loop="true"
+                                ads:lottie_rawRes="@raw/stars" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ad_Cw"
+                    style="?attr/cardStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:clickable="true"
+                    android:visibility="invisible"
+                    ads:cardCornerRadius="12dp"
+                    ads:cardElevation="10dp"
+                    ads:layout_constraintEnd_toEndOf="parent"
+                    ads:layout_constraintStart_toStartOf="parent"
+                    ads:layout_constraintTop_toBottomOf="@id/rate">
+
+                    <com.google.android.gms.ads.AdView
+                        android:id="@+id/ad_view_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:layout_gravity="center_horizontal"
+                        ads:adSize="SMART_BANNER"
+                        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                        ads:layout_constraintEnd_toEndOf="parent"
+                        ads:layout_constraintStart_toStartOf="parent"
+                        ads:layout_constraintTop_toBottomOf="@id/subs" />
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

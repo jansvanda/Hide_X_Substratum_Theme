@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1074467381111",
+    "project_id": "hidex-7d910",
+    "storage_bucket": "hidex-7d910.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074467381111:android:376a512ee9597aee964b72",
+        "android_client_info": {
+          "package_name": "substratum.hidex.svandasek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074467381111-hetgnaqkjmk89o5vj0j68j92t3j5vm84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJiWLPSC448IvOE2x5J-VMBrdWFkwGE0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074467381111-hetgnaqkjmk89o5vj0j68j92t3j5vm84.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
